@@ -5,6 +5,8 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 import MovieCard from './components/MovieCard';
 import RadheSyam from './components/RadheSyam';
+import Kgf from './components/Kgf';
+import Puspha from './components/Puspha';
 import { Route } from 'react-router';
 
 function App() {
@@ -12,12 +14,22 @@ function App() {
     <div className="App">
 
       <Navbar />
-      <Route>
+      <Route exact path="/">
         <Home />
         <MovieCard />
       </Route>
-      <MovieCard />
-      <Register />
+      <Route path="/register">
+        <Register />
+      </Route>
+      <Route path="/pushpa">
+        <Puspha />
+      </Route>
+      <Route path="/kgf2">
+        <Kgf />
+      </Route>
+      <Route path="/radhesyame">
+        <RadheSyam />
+      </Route>
     </div>
   );
 }
