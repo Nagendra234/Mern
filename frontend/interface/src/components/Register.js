@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 import './style.css'
+//import { response } from 'express'
 class Register extends Component {
     constructor(props) {
         super(props)
@@ -10,57 +12,60 @@ class Register extends Component {
             phone: "",
             password: ""
         }
+        this.submitForm = this.submitForm.bind(this)
 
     }
-    changeName(event) {
-        this.setState({
-            name: event.target.value
-        })
+    handleChange = (event) => {
+        this.setState({ [event.target.name]: event.target.value })
+
     }
-    changeName(event) {
+    submitForm = (event) => {
+        event.preventDefault()
+
+        const registered = {
+            name: this.state.name,
+            email: this.state.email,
+            phone: this.state.phone,
+            password: this.state.phone
+        }
+        axios.post('http://localhost:4000/register', registered)
+            .then(response => {
+                console.log(response.data)
+            })
+
         this.setState({
-            name: event.target.value
+            name: "",
+            email: "",
+            phone: "",
+            password: ""
         })
-    }
-    changePhone(event) {
-        this.setState({
-            phone: event.target.value
-        })
-    }
-    changePassword(event) {
-        this.setState({
-            password: event.target.value
-        })
+
     }
 
 
     render() {
         return (
             <div>
-                <form>
+                <form onSubmit={this.submitForm}>
                     <div class="form-group">
                         <label for="fullName" className="label-name"> Full Name</label>
-                        <input type="text" className="form-control" onChange={this.changeName}
+                        <input type="text" className="form-control" onChange={this.handleChange}
                             placeholder="Enter Your Full Name" name="name" value={this.state.name} required />
                     </div>
                     <div class="form-group">
                         <label for="email" className="label-name">Email address</label>
-                        <input type="email" className="form-control" onChange={this.changeEmail}
+                        <input type="email" className="form-control" onChange={this.handleChange}
                             placeholder="Enter Your Email Address" name="email" value={this.state.email} required />
                     </div>
                     <div class="form-group">
                         <label for="mobileNumber" className="label-name">Mobile Number</label>
-                        <input type="text" className="form-control" onChange={this.changePhone}
+                        <input type="text" className="form-control" onChange={this.handleChange}
                             placeholder="Enter Your Phone Number" name="phone" value={this.state.phone} required />
                     </div>
                     <div class="form-group">
                         <label for="password" className="label-name">Password</label>
-                        <input type="password" className="form-control" onChange={this.changePassword}
+                        <input type="password" className="form-control" onChange={this.handleChange}
                             placeholder="Enter your Passwordr" name="password" value={this.state.password} required />
-                    </div>
-                    <div class="form-group">
-                        <label for="confirmPass">Confirm Password</label>
-                        <input type="password" className="form-control" placeholder="Enter Your Full Name" />
                     </div>
                     <button type="submit" className="btn btn-primary">Register</button>
                 </form>
