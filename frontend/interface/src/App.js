@@ -27,7 +27,7 @@ function App() {
       <Route path="/kgf2">
         <Kgf />
       </Route>
-      <Route path="/radhesyame">
+      <Route path="/radhesyam">
         <RadheSyam />
       </Route>
     </div>
