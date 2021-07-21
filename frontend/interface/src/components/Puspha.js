@@ -6,7 +6,7 @@ class Puspha extends Component {
     render() {
         return (
             <div>
-                <div>
+                <div className="ps">
                     <img src={crd} alt="pushpa-image" className="mvimg" />
                 </div>
                 <div>
