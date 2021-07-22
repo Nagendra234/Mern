@@ -13,11 +13,9 @@ mongoose.connect(DB, {
     console.log(`connnection successful`);
 }).catch((err) => console.log(`no connection`));
 
-// const User = require('./model/userSchema');
 
 app.use(express.json());
 
-// we link the router files to make our route easy 
 app.use(require('./Routes/auth'));
 
 
@@ -25,6 +23,6 @@ app.get('/register', (req, res) => {
     res.send(`Hello Registration world from the server`);
 });
 
-app.listen(4000, () => {
+app.listen(4500, () => {
     console.log(`server is runnig at port no 4000`);
 })
